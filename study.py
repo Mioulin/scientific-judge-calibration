@@ -204,7 +204,7 @@ def analyse(output):
         rows = [json.loads(x) for x in (output / f"{policy}.jsonl").read_text().splitlines()]
         for condition in CONDITIONS:
             subset = [x for x in rows if x["condition"] == condition]
-            groups = {i: [] for i in {r["id"] for r in subset}}
+            groups = {i: [] for i in sorted({r["id"] for r in subset})}
             for r in subset:
                 groups[r["id"]].append(r)
             per_problem = [np.mean([r["correct"] for r in group]) for group in groups.values()]
@@ -329,6 +329,62 @@ def analyse(output):
         "Numerical answers have independent Decimal oracles. Evidence/abstention labels are template-defined. Synthetic preferences are not human annotations. Family-level generality, expert agreement, externally validated uncertainty calibration and a second model family are NOT RUN. Bootstraps resample problems, keeping conditions/orders together; systematic template error remains. New condition combinations can change conclusions.",
         "The SFT/reward checkpoints are the earlier lab checkpoints, not adapted using this test. New numerical instances exclude the fresh tool-study dataset; the shared families/templates remain an important overlap. No claims about proprietary reviewer tasks are made.",
     ]
+    lines += [
+        "",
+        "## Held-out temperature calibration: neutral test",
+        "| Policy | T | Raw Brier | Scaled Brier | Raw NLL | Scaled NLL |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for r in calibration:
+        if r["condition"] == "neutral":
+            lines.append(
+                f"| {r['policy']} | {r['temperature']:.3f} | {r['raw_brier']:.3f} | {r['scaled_brier']:.3f} | {r['raw_nll']:.3f} | {r['scaled_nll']:.3f} |"
+            )
+    lines += [
+        "",
+        "Temperature changes uncertainty only, not decision accuracy. Values at either search bound indicate a bounded optimum rather than a precisely identified temperature. All style-specific test scores remain in temperature_calibration.json.",
+    ]
+    fig, ax = plt.subplots(figsize=(6, 4))
+    for policy in ["baseline", "sft", "reward"]:
+        rs = [r for r in reliability if r["policy"] == policy]
+        ax.plot(
+            [r["mean_confidence"] for r in rs],
+            [r["accuracy"] for r in rs],
+            marker="o",
+            label=policy,
+        )
+    ax.plot([0.5, 1], [0.5, 1], "k--")
+    ax.set(
+        xlim=(0.5, 1),
+        ylim=(0, 1),
+        xlabel="Conditional chosen-answer confidence",
+        ylabel="Observed correctness",
+        title="Raw descriptive reliability: repeated decisions",
+    )
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(output / "reliability.png", dpi=160)
+    plt.close(fig)
+    problems = {
+        r["id"]: r
+        for r in [json.loads(x) for x in (output / "problems.jsonl").read_text().splitlines()]
+    }
+    failures = []
+    for policy in ["baseline", "sft", "reward"]:
+        rr = [json.loads(x) for x in (output / f"{policy}.jsonl").read_text().splitlines()]
+        selected = [r for r in rr if r["condition"] == "neutral" and not r["correct"]][:3]
+        failures.extend(
+            [
+                {
+                    "policy": policy,
+                    "selection": "first three neutral incorrect records in deterministic file order",
+                    **r,
+                    "problem": problems[r["id"]],
+                }
+                for r in selected
+            ]
+        )
+    (output / "failure_examples.json").write_text(json.dumps(failures, indent=2))
     (output / "report.md").write_text("\n".join(lines) + "\n")
 
 
