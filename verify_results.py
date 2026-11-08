@@ -52,7 +52,10 @@ def verify(root=Path("results")):
             "failure_examples.json",
         ]:
             assert json.loads((root / fn).read_text()) == json.loads((scratch / fn).read_text()), fn
+        for fn in ["comparison.png", "reliability.png"]:
+            assert (root / fn).read_bytes() == (scratch / fn).read_bytes(), fn
     manifest = {
+        "plots_exactly_reproduced": True,
         "status": "COMPLETED",
         "verified_decisions": count,
         "calibration_test_disjoint": True,
