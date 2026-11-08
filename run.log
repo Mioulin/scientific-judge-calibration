@@ -1,0 +1,24 @@
+W1108 12:54:58.164000 66877 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<03:11,  1.51it/s]Loading weights:  92%|█████████▏| 267/290 [00:00<00:00, 465.67it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 353.51it/s]
+baseline 0
+baseline 16
+baseline 32
+baseline 48
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:35,  3.02it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 798.56it/s]
+sft 0
+sft 16
+sft 32
+sft 48
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  30%|███       | 87/290 [00:00<00:00, 823.89it/s]Loading weights:  68%|██████▊   | 196/290 [00:00<00:00, 971.24it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1002.76it/s]
+[transformers] [1mQwen2ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen2.5-0.5B-Instruct
+Key          | Status  | 
+-------------+---------+-
+score.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+reward 0
+reward 16
+reward 32
+reward 48
+Matplotlib is building the font cache; this may take a moment.

@@ -1,0 +1,13 @@
+{
+  "plots_exactly_reproduced": true,
+  "status": "COMPLETED",
+  "verified_decisions": 1920,
+  "calibration_test_disjoint": true,
+  "analysis_exactly_recomputed": true,
+  "input_sha256": {
+    "problems.jsonl": "3ff01d0a7fe7249118651854c700961c22f7b1211ea4780b888d24e90168112a",
+    "baseline.jsonl": "b522bb7450f4f73d2163b62614e86dbbca38cc3455b32e8a9a21b026c1de40f6",
+    "sft.jsonl": "cb3bbf675e74b83a4c0f4f75d8635e5eb2a63f2fd6ff5fd67a0f3d27db7c0e4a",
+    "reward.jsonl": "92b81ef7bc2c03891abe960d72e623f37c3b87138da23aa6c73e1a81721a195b"
+  }
+}

@@ -190,6 +190,21 @@ def run(lab_root, output):
         if torch.backends.mps.is_available():
             torch.mps.empty_cache()
     analyse(output)
+    finalise_protocol(output, lab)
+
+
+def finalise_protocol(output, lab):
+    protocol = json.loads((output / "protocol.json").read_text())
+    protocol["status"] = "COMPLETED"
+    protocol["model"] = json.loads((lab / "configs/model.json").read_text())
+    protocol["adapter_sha256"] = {
+        kind: hashlib.sha256(
+            (lab / f"checkpoints/{kind}/final/adapter_model.safetensors").read_bytes()
+        ).hexdigest()
+        for kind in ["sft", "reward"]
+    }
+    protocol["analysis_source_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    (output / "protocol.json").write_text(json.dumps(protocol, indent=2))
 
 
 def analyse(output):
@@ -342,7 +357,7 @@ def analyse(output):
             )
     lines += [
         "",
-        "Temperature changes uncertainty only, not decision accuracy. Values at either search bound indicate a bounded optimum rather than a precisely identified temperature. All style-specific test scores remain in temperature_calibration.json.",
+        "An uninformative probability of 0.5 has Brier 0.25 and NLL 0.693; this is an essential calibration control. Lower Brier than the raw model alone does not imply beating this control. Temperature changes uncertainty only, not decision accuracy. Values at either search bound indicate a bounded optimum rather than a precisely identified temperature. All style-specific test scores remain in temperature_calibration.json.",
     ]
     fig, ax = plt.subplots(figsize=(6, 4))
     for policy in ["baseline", "sft", "reward"]:

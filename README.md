@@ -32,3 +32,21 @@ HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
 The approach is informed by [Zheng et al., Judging LLM-as-a-Judge](https://arxiv.org/abs/2306.05685), which studies position and verbosity biases. This is a small controlled extension, not a reproduction of their human-agreement study. Base/SFT are one model family. Expert validation and cross-family replication are NOT RUN.
 
 Original code: MIT. Original generated problems: CC0-1.0. Qwen base: Apache-2.0; the companion adapters inherit model requirements. This repository contains no model weights.
+
+## Executed findings
+
+**COMPLETED:** 1,920 recorded decisions, all analysis tables independently recomputed, and both plots exactly regenerated from the saved decision records.
+
+| Policy | Neutral accuracy | Incorrect answer made verbose | Incorrect answer made confident |
+|---|---:|---:|---:|
+| Base conditional A/B judge | 50.0% | 50.0% | 50.0% |
+| SFT conditional A/B judge | 50.0% | 50.0% | 50.0% |
+| Scalar reward model | 78.1% | 12.5% | 0.0% |
+
+Both conditional A/B judges selected A in all 640 decisions. Their 50% accuracy therefore reflects the counterbalanced protocol, not useful discrimination. The reward-model intervention also changes its strict-JSON training format; do not isolate verbosity as the sole cause.
+
+On the disjoint 32-problem neutral calibration test, temperature scaling changes Brier from 0.479 to 0.312 (base), 0.486 to 0.323 (SFT), and 0.152 to 0.153 (reward). The uninformative probability baseline has Brier 0.25: the first two remain worse, and reward calibration does not improve on this test. Full precision and all conditions are retained in the JSON files.
+
+![Measured style sensitivity](results/comparison.png)
+
+Run `uv run python verify_results.py` to verify the 1,920 decisions, disjoint calibration split, recomputed tables and plot bytes. `results/protocol.json` records the exact base-model revision and local adapter SHA-256 values. The results are a small synthetic transfer audit; they do not establish general judge quality.

@@ -1,0 +1,152 @@
+[
+  {
+    "policy": "baseline",
+    "condition": "neutral",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.47859274158803555,
+    "scaled_brier": 0.312465081550289,
+    "raw_nll": 2.1214543193021043,
+    "scaled_nll": 0.8395303775781311
+  },
+  {
+    "policy": "baseline",
+    "condition": "wrong_verbose",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.48138816003056556,
+    "scaled_brier": 0.30478311995090923,
+    "raw_nll": 2.1141666407402813,
+    "scaled_nll": 0.8174280257197363
+  },
+  {
+    "policy": "baseline",
+    "condition": "correct_verbose",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4867032524676164,
+    "scaled_brier": 0.3384458415447732,
+    "raw_nll": 2.510716281328646,
+    "scaled_nll": 0.9148281839304305
+  },
+  {
+    "policy": "baseline",
+    "condition": "wrong_confident",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.49442923520306165,
+    "scaled_brier": 0.34407410684704054,
+    "raw_nll": 2.903605414615709,
+    "scaled_nll": 0.9352000630627153
+  },
+  {
+    "policy": "baseline",
+    "condition": "correct_confident",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4935911454298336,
+    "scaled_brier": 0.3625504481933929,
+    "raw_nll": 3.1833297829512253,
+    "scaled_nll": 1.0076956391805822
+  },
+  {
+    "policy": "sft",
+    "condition": "neutral",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4857710420212947,
+    "scaled_brier": 0.3233077974944741,
+    "raw_nll": 2.3871872158934826,
+    "scaled_nll": 0.8704647809253371
+  },
+  {
+    "policy": "sft",
+    "condition": "wrong_verbose",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.47137539385437277,
+    "scaled_brier": 0.2851254257902347,
+    "raw_nll": 1.8580281872115167,
+    "scaled_nll": 0.7656801385202725
+  },
+  {
+    "policy": "sft",
+    "condition": "correct_verbose",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4911891553989622,
+    "scaled_brier": 0.3487810353100319,
+    "raw_nll": 2.544607507568986,
+    "scaled_nll": 0.9385783799258429
+  },
+  {
+    "policy": "sft",
+    "condition": "wrong_confident",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4954033440978728,
+    "scaled_brier": 0.3526127044761251,
+    "raw_nll": 3.123858129190422,
+    "scaled_nll": 0.966835420955279
+  },
+  {
+    "policy": "sft",
+    "condition": "correct_confident",
+    "temperature": 4.0,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.4963486577716571,
+    "scaled_brier": 0.37952676218707154,
+    "raw_nll": 3.575672338558366,
+    "scaled_nll": 1.0797414301190496
+  },
+  {
+    "policy": "reward",
+    "condition": "neutral",
+    "temperature": 1.189207115002721,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.15205116010079364,
+    "scaled_brier": 0.15303880210454907,
+    "raw_nll": 0.45620118862199754,
+    "scaled_nll": 0.45998533839098443
+  },
+  {
+    "policy": "reward",
+    "condition": "wrong_verbose",
+    "temperature": 1.189207115002721,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.7497881683830915,
+    "scaled_brier": 0.7084799685991693,
+    "raw_nll": 2.6307804954743474,
+    "scaled_nll": 2.26436172290794
+  },
+  {
+    "policy": "reward",
+    "condition": "correct_verbose",
+    "temperature": 1.189207115002721,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.005329405019507849,
+    "scaled_brier": 0.008901006292782267,
+    "raw_nll": 0.049552286066654835,
+    "scaled_nll": 0.07063755115366305
+  },
+  {
+    "policy": "reward",
+    "condition": "wrong_confident",
+    "temperature": 1.189207115002721,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.9302050211663859,
+    "scaled_brier": 0.9032146790953889,
+    "raw_nll": 4.703549300978425,
+    "scaled_nll": 3.978126741798723
+  },
+  {
+    "policy": "reward",
+    "condition": "correct_confident",
+    "temperature": 1.189207115002721,
+    "n_independent_test_problems": 32,
+    "raw_brier": 0.0003405925308903601,
+    "scaled_brier": 0.0008744570266278648,
+    "raw_nll": 0.010127033916727384,
+    "scaled_nll": 0.018283903387390152
+  }
+]
