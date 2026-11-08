@@ -15,7 +15,7 @@ The first four instances per family form the 32-problem calibration split; the r
 From the companion lab, install its pinned environment and generate/train its original SFT and reward models following its README. Prepare the fresh exclusion set with `PYTHONPATH=src .venv/bin/python -m scireason.toolstudy prepare`. Then, from this repository:
 
 ```bash
-uv sync --frozen
+uv sync --python 3.12 --frozen
 uv run pytest -q
 uv run ruff check .
 HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
