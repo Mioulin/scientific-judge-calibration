@@ -74,20 +74,20 @@ def run(lab_root, output):
     os.chdir(lab)
     from scireason.data import SYSTEM
     from scireason.runtime import hardware, load
-    from scireason.toolstudy import make_example
+    from scireason.toolstudy import make_example, semantic_key
 
     rng = random.Random(773290)
     # Explicitly exclude all published and fresh study numerical conditions.
     exclusions = set()
     for p in (lab / "data/toolstudy").glob("*.jsonl"):
-        exclusions.update(json.loads(s)["instance_key"] for s in p.read_text().splitlines())
+        exclusions.update(semantic_key(json.loads(s)) for s in p.read_text().splitlines())
     problems = []
     for family in FAMILIES:
         for i in range(8):
             row = make_example(family, "test", i, rng)
-            while row["instance_key"] in exclusions:
+            while semantic_key(row) in exclusions:
                 row = make_example(family, "test", i, rng)
-            exclusions.add(row["instance_key"])
+            exclusions.add(semantic_key(row))
             row["judgement_split"] = "calibration" if i < 4 else "test"
             problems.append(row)
     (output / "problems.jsonl").write_text("".join(json.dumps(r) + "\n" for r in problems))
