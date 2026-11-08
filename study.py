@@ -77,7 +77,7 @@ def run(lab_root, output):
     from scireason.toolstudy import make_example, semantic_key
 
     rng = random.Random(773290)
-    # Explicitly exclude all published and fresh study numerical conditions.
+    # Explicitly exclude all fresh-study numerical conditions.
     exclusions = set()
     for p in (lab / "data/toolstudy").glob("*.jsonl"):
         exclusions.update(semantic_key(json.loads(s)) for s in p.read_text().splitlines())
