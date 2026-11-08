@@ -1,5 +1,7 @@
 # Scientific judge calibration
 
+[![tests](https://github.com/Mioulin/scientific-judge-calibration/actions/workflows/tests.yml/badge.svg)](https://github.com/Mioulin/scientific-judge-calibration/actions/workflows/tests.yml)
+
 A controlled audit of factual correctness, response order and rhetorical style in a small LLM judge and a separately trained scalar reward model. Original synthetic tasks only; no private reviewer tasks or human-preference claims.
 
 This project extends the [post-training lab](https://github.com/Mioulin/scientific-reasoning-post-training-lab). The companion lab must contain `scireason.toolstudy` (branch `research/verified-computation`) and its original SFT and reward checkpoints. Weights are not committed here. The exact dependency commit is recorded in `results/protocol.json` during execution.

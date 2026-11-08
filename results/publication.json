@@ -1,0 +1,9 @@
+{
+  "status": "COMPLETED",
+  "repository_url": "https://github.com/Mioulin/scientific-judge-calibration",
+  "visibility": "public",
+  "approved_research_commit": "5c1fc3c023f832b5fc5e89d096ade107988ab990",
+  "remote_commit_verified": true,
+  "weights_uploaded": false,
+  "note": "Subsequent documentation-only commit records publication; live CI is linked from README."
+}
