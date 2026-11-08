@@ -156,6 +156,9 @@ def run(lab_root, output):
                                 logits = model(**inp).logits[0, -1, [x[0] for x in ids]].float()
                             pp = logits.softmax(0).cpu().numpy()
                             prob = float(pp[0 if order == "good_first" else 1])
+                        assert np.isfinite(prob) and 0 <= prob <= 1, (
+                            "Non-finite decision probability"
+                        )
                         record = {
                             "id": row["id"],
                             "judgement_split": row["judgement_split"],
@@ -322,7 +325,7 @@ def analyse(output):
     lines += [
         "",
         "## Interpretation and limitations",
-        "A/B probabilities are softmax-normalised over two next-token logits: conditional forced-choice preferences, not unconstrained response probabilities. Brier is computed against the objectively correct candidate and is a proper binary score. A separate temperature experiment fits T on 32 neutral calibration problems and evaluates on 32 disjoint problems under every style condition. T is selected from 81 log-spaced values in [0.25,4] by calibration NLL; positive T cannot improve classification accuracy. The raw 64-problem audit remains separate from this held-out calibration test. Small data and model mismatch prevent claims of established calibration. Reward probabilities are sigmoid reward margins, whose scale is not intrinsically calibrated. Reward order invariance is architectural, not an empirical discovery. No malformed generation rate is measured because decisions are constrained to A/B. Confidence claims are stylistic perturbations, not elicited uncertainty.",
+        "A/B probabilities are softmax-normalised over two next-token logits: conditional forced-choice preferences, not unconstrained response probabilities. Brier is computed against the objectively correct candidate and is a proper binary score. A separate temperature experiment fits T on 32 neutral calibration problems and evaluates on 32 disjoint problems under every style condition. T is selected from 81 log-spaced values in [0.25,4] by calibration NLL; positive T cannot improve classification accuracy. The raw 64-problem audit remains separate from this held-out calibration test. Small data and model mismatch prevent claims of established calibration. Reward probabilities are sigmoid reward margins, whose scale is not intrinsically calibrated. Reward order invariance is architectural, not an empirical discovery. No malformed generation rate is measured because decisions are constrained to A/B. Confidence claims are rhetorical perturbations, not elicited uncertainty. Labels grade the core numerical/evidence answer, not every appended rhetorical claim. For the reward model, appended prose also violates its strict-JSON training format: this is a joint style/format distribution shift, not an isolated verbosity effect. The correct-verbose control is retained to inspect that confound.",
         "Numerical answers have independent Decimal oracles. Evidence/abstention labels are template-defined. Synthetic preferences are not human annotations. Family-level generality, expert agreement, externally validated uncertainty calibration and a second model family are NOT RUN. Bootstraps resample problems, keeping conditions/orders together; systematic template error remains. New condition combinations can change conclusions.",
         "The SFT/reward checkpoints are the earlier lab checkpoints, not adapted using this test. New numerical instances exclude the fresh tool-study dataset; the shared families/templates remain an important overlap. No claims about proprietary reviewer tasks are made.",
     ]
