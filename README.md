@@ -39,7 +39,7 @@ HF_HUB_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
 
 ## Artefacts
 
-`results/` holds problem provenance, raw probability/margin records, timings, clustered intervals, style sensitivity, reliability bins, held-out temperature calibration, report and comparison figure. `docs/learning_guide_ru.md` explains the design. Status is recorded in `PROGRESS.md`.
+`results/` holds problem provenance, raw probability/margin records, timings, clustered intervals, style sensitivity, reliability bins, held-out temperature calibration, report and comparison figure. Status is recorded in `PROGRESS.md`.
 
 The approach is informed by [Zheng et al., Judging LLM-as-a-Judge](https://arxiv.org/abs/2306.05685), which studies position and verbosity biases. This is a small controlled extension, not a reproduction of their human-agreement study. Base/SFT are one model family. Expert validation and cross-family replication are NOT RUN.
 
