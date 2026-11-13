@@ -1,5 +1,15 @@
 # Scientific judge calibration
 
+## Public consulting demonstrator
+
+This repository is a public prototype illustrating the approach for my confidential internal consulting projects. It is intended to demonstrate methodology, engineering practice and evaluation discipline. It is not a release of a client implementation.
+
+**Demonstrated approach:** Auditing automated evaluators for position bias, response-style sensitivity and uncertainty calibration before using their scores in a decision process.
+
+All reported measurements belong to the public synthetic experiments in this repository. They are not client results, production performance or evidence of deployment. Client identities, data, requirements, proprietary code and commercial outcomes are not disclosed. The prototype preserves its measured failures and limitations so that the approach can be reviewed independently.
+
+See [consulting context and scope](docs/consulting_context.md).
+
 [![tests](https://github.com/Mioulin/scientific-judge-calibration/actions/workflows/tests.yml/badge.svg)](https://github.com/Mioulin/scientific-judge-calibration/actions/workflows/tests.yml)
 
 A controlled audit of factual correctness, response order and rhetorical style in a small LLM judge and a separately trained scalar reward model. Original synthetic tasks only; no private reviewer tasks or human-preference claims.

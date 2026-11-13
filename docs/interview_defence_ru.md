@@ -8,4 +8,4 @@
 
 **How did you avoid pseudoreplication?** “I treated the problem as the sampling unit, retaining answer-order repetitions within each cluster.” 640 решений не дают n=640 независимых задач.
 
-**What did you personally implement?** Код подготовлен с помощью AI coding assistant и исполнен локально. До личного разбора и самостоятельного воспроизведения корректно говорить: “I developed and ran an AI-assisted research implementation, and can explain its protocol and limitations.” Не приписывайте себе ручное написание каждой строки. Для защиты самостоятельно воспроизведите один тест и объясните формулу Brier и зависимость результата от порядка.
+**What did you personally implement?** “This public prototype demonstrates the evaluation approach for my confidential consulting work. Its recorded results come from synthetic tasks, not client engagements.” Для защиты самостоятельно воспроизведите один тест и объясните формулу Brier и зависимость результата от порядка.
